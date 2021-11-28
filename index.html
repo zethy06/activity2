@@ -1,0 +1,127 @@
+<html>
+   <head>
+      <title>Angular JS Table</title>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+      <style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+
+         table tr:nth-child(odd) {
+            background-color: #C2AF83;
+         }
+
+         table tr:nth-child(even) {
+            background-color: #C2AF83;
+         }
+      </style>
+   </head>
+
+   <center><body style="background-color:#000000; font-family:courier;"></h2>
+      <h1 style="color:#FFFFFF"> ACTIVITY 2</h1>
+      <div ng-app = "mainApp" ng-controller = "studentController">
+
+         <table border = "0">
+
+            <tr>
+               <td>Enter First Name:</td>
+               <td><input type = "text" ng-model = "student.firstName"></td>
+            </tr>
+
+            <tr>
+               <td>Enter Middle Name: </td>
+               <td><input type = "text" ng-model = "student.middleName"></td>
+            </tr>
+
+            <tr>
+               <td>Enter Last Name: </td>
+               <td><input type = "text" ng-model = "student.lastName"></td>
+            </tr>
+
+            <tr>
+               <td>Full Name: </td>
+               <td>{{student.fullName()}}</td>
+            </tr>
+
+            <tr>
+               <td>Enter your Year Level:</td>
+               <td><input type = "text" ng-model = "student.yearLevel"></td>
+            </tr>
+
+             <tr>
+               <td>Enter your Course:</td>
+               <td><input type = "text" ng-model = "student.Course"></td>
+            </tr>
+
+             <tr>
+               <td>Enter your School:</td>
+               <td><input type = "text" ng-model = "student.School"></td>
+            </tr>
+
+            <tr>
+               <td>Your year level, course and school are:</td>
+               <td>{{student.description()}}</td>
+            </tr>
+
+            <tr>
+               <td>Grades in Subjects:</td>
+
+               <td>
+                  <table>
+                     <tr>
+                        <th>Name</th>
+                        <th>Marks</th>
+                     </tr>
+                     <tr ng-repeat = "subject in student.subjects">
+                        <td>{{ subject.name }}</td>
+                        <td>{{ subject.marks }}</td>
+                     </tr>
+                 </table>
+               </td>
+            </tr>
+         </table>
+      </div>
+
+
+
+      <script>
+         var mainApp = angular.module("mainApp", []);
+
+
+         mainApp.controller('studentController', function($scope) {
+            $scope.student = {
+               firstName: "Lyzeth",
+               lastName: "Nankil",
+               middleName: "Asperas",
+               yearLevel: "3rd year",
+               Course: "BSIT",
+               School: "Informatics College",
+
+               subjects:[
+                  {name:'Visual Arts',marks:85},
+                  {name:'Nursing',marks:80},
+                  {name:'History',marks:74},
+                  {name:'English',marks:87},
+                  {name:'Music',marks:70}
+               ],
+
+
+               fullName: function() {
+                  var studentObject;
+                  studentObject = $scope.student;
+                  return studentObject.firstName + " " + studentObject.middleName + " " + studentObject.lastName;},
+
+                description: function() {
+                var studentObject;
+                studentObject = $scope.student;
+                return studentObject.yearLevel + ", " + studentObject.Course + ", " + studentObject.School;}
+
+            };
+         });
+      </script>
+
+</center>
+</html>
